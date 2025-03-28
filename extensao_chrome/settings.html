@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Configurações para Captura de Tela</title>
+  <style>
+    body {
+      width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    img.logo {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto 20px auto;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+    .success {
+      background-color: #dff0d8;
+      color: #3c763d;
+    }
+    .error {
+      background-color: #f2dede;
+      color: #a94442;
+    }
+    .help-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="logo.png" alt="Gemini Trader IA Logo" class="logo">
+
+  <h2>Envio das Capturas de Tela para Servidor n8n</h2>
+
+  <form id="settingsForm">
+    <div class="form-group">
+      <label for="webhookUrl">Webhook URL:</label>
+      <input type="text" id="webhookUrl" required placeholder="https://seu-servidor.com">
+      <div class="help-text">Rota de envio das imagens ao Webhook</div>
+    </div>
+    <button type="submit">Salvar dados</button>
+  </form>
+  
+  <div id="status" class="status"></div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

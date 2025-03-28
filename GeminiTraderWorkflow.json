@@ -1,0 +1,205 @@
+{
+  "name": "Analise Mercado Gemini",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "e9a97dd5-f1e7-4d5b-a6f1-be5f0c9eb96c",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -360,
+        -160
+      ],
+      "id": "bc94b184-2a20-4c6c-9b31-b1287b8f7999",
+      "name": "Webhook",
+      "webhookId": "e9a97dd5-f1e7-4d5b-a6f1-be5f0c9eb96c"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "sessionId",
+              "value": "static-session"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -180,
+        -160
+      ],
+      "name": "Set Session ID",
+      "id": "23694f1a-8cb2-4958-a219-8655925363d8"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Analise o mercado de acordo com a imagem. Responda em pt-br numa frase única, com no máximo 50 caratceters, fazendo uma recomendação para COMPRA, VENDA ou NEUTRO, incluindo o percentual de confiabilidade. Caso a resposta seja de COMPRA ou VENDA, inclua tambem os alvos de takeprofit ou stoploss.",
+        "options": {
+          "passthroughBinaryImages": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        40,
+        -160
+      ],
+      "id": "1697f0a5-6e4d-41b6-bb43-095b7115d6ef",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-001",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        0,
+        40
+      ],
+      "id": "279c61bf-e9e1-4198-872c-882858a813b8",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "7TylR3VO5AvKzkuL",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        140,
+        40
+      ],
+      "id": "b94a771c-b6fd-4525-addc-470548d15a51",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        380,
+        -160
+      ],
+      "id": "9d6848b8-f4de-4542-a509-e96d19367385",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "server.michelpaes.com.br",
+            "x-real-ip": "200.17.130.196",
+            "x-forwarded-for": "200.17.130.196",
+            "x-forwarded-proto": "https",
+            "content-length": "290849",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+            "content-type": "image/png",
+            "accept": "*/*",
+            "origin": "chrome-extension://emfkjibbjmoeojobmdjadlihciapmamk",
+            "sec-fetch-site": "none",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-storage-access": "active",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cookie": "MicrosoftApplicationsTelemetryDeviceId=99bc13cc-8f5a-48c2-9d74-7aecf3ae6ec4; MSFPC=GUID=a8719fbd4eaa41fabac6fb51f1e4b52f&HASH=a871&LV=202502&V=4&LU=1740750390165; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX185slRHU%2BhgRmyN%2FFW1eYcsIETH5Ag%2BYjU%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX18%2BhTE1RZ12Br6D5sCBwIQMHg0z4PZlueI%3D; n8n-auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJlMDRmM2Q3LWNkMGQtNGE1NS1iNjU4LThlYmQwYzI0NWM1MyIsImhhc2giOiJrT1cva1R5VFRSIiwiYnJvd3NlcklkIjoiZ2taeGdJMmNLNEJwemRReWhrZElVdmtoQ2ZpcWxnbmJ0bFNFTVNSQWovaz0iLCJpYXQiOjE3NDI5MTE4MzYsImV4cCI6MTc0MzUxNjYzNn0.CL6l6BnrXjB5rE0ojLeRQZn21cDXAwptuDdA_6p8TgU; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX19oMZAURTvvC2KgBXZAJkSwJGWujWy74Hr6JqtRjP%2FbPebDZB0U6EmTkQ44v8Cx1hjFQtURAyZ3jg%3D%3D; rl_user_id=RudderEncrypt%3AU2FsdGVkX19oMAImbjf%2FB4M0eK%2BZdwkaViTDgIa%2FCcFfq6qD04inN4u0CaJGqbQdLi9wSBbawomTD93mKmNOmuMWKF1Rn9zF56iwqXl1Mf%2FAIxgDI43vtYfr51NeFtH2r3dkmI7Ru53kmuKl0UDW6xDIPpdjGuwLmBoz5PJKl4Q%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX19c2FK6ZZd%2FFZlIBa8wxF7rExl%2BUT4c9ZfzfSse8GfpMSupjRUOXReRisJ%2B0jruRTmfuUYB8d2x3Wqjx8gdNwp7CcM6vtzqy5JiwRD0d79%2B11Ao2vHUyBim4Xw9w1n2SQpwWerThrLaKg%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX1%2B3WR0RncRjgADxunoyGJFtpZ6EDRntnvJj1G1f%2FKTly1N6XSXtVGojPlS7yl%2BwBtSjXsC56WjU9jP8dStoBQR%2FsiVuENvfFPGBlnLvuUuz8qwyB3j3AoBtxgwhtr%2B2eeei0eekIAjEuA%3D%3D"
+          },
+          "params": {},
+          "query": {},
+          "body": {},
+          "webhookUrl": "https://server.michelpaes.com.br/n8n/webhook/e9a97dd5-f1e7-4d5b-a6f1-be5f0c9eb96c",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set Session ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Session ID": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "20ca72b4-f8c0-453a-959a-bcc39ef74beb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2332d6de916367b54c8f5b25ad84acf7fc776237433dc2bc8fcff8d961ebd594"
+  },
+  "id": "ecXFa8hFkiOpwF6A",
+  "tags": []
+}

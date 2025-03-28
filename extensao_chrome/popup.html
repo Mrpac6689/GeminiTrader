@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Analise de Tela</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      width: 300px;
+      max-width: 100%;
+      padding: 16px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      background-color: #f4f4f4;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    .settings-link {
+      display: block;
+      margin-top: 12px;
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .settings-link:hover {
+      text-decoration: underline;
+    }
+    .warning-message {
+      color: #d32f2f;
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+    }
+    .response-area {
+      margin-top: 18px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fff;
+      display: none;
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-size: 15px;
+    }
+    .loading {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <button id="captureBtn">Analisar Tela</button>
+
+  <div id="warningMessage" class="warning-message">
+    Configure a URL do Webhook nas opções antes de continuar.
+  </div>
+
+  <a href="settings.html" class="settings-link" target="_blank">Configurar</a>
+
+  <div id="loading" class="loading">Processando analise...</div>
+
+  <div id="responseArea" class="response-area">
+    <div id="responseContent"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
