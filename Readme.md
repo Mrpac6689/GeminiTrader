@@ -123,7 +123,7 @@ VENDA com 84% | TP: 126.700 | SL: 132.850
 ## 🛌 Contato
 - Desenvolvido por Michel Ribeiro Paes
 - Email: [michel@michelpaes.com.br]
-- Site: [https://server.michelpaes.com.br]
+- Site: [https://www.michelpaes.com.br]
 
 ---
 
